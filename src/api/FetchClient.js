@@ -269,18 +269,6 @@ class FetchRequestBuilder {
 		}
 		let result = await response.json();
 		if (!result) return result;
-		if (result.items !== undefined && result.count !== undefined) {
-			// query result
-			const queryResultType = this.searchParams.get("result");
-			switch (queryResultType) {
-				case "ItemsWithCount":
-					return result;
-				case "Count":
-					return result.count;
-				default:
-					result = result.items;
-			}
-		}
 		if (this.clientFilter) {
 			result = await this.clientFilter(result, {
 				url: this.url,
@@ -290,6 +278,18 @@ class FetchRequestBuilder {
 				routeParams: this.routeParams,
 				body: this.body,
 			});
+		}
+		if (result.items !== undefined && result.count !== undefined) {
+			// query result
+			const queryResultType = this.searchParams.get("result");
+			switch (queryResultType) {
+				case "ItemsWithCount":
+					return result;
+				case "Count":
+					return result.count;
+				default:
+					return result.items;
+			}
 		}
 		return result;
 	}
