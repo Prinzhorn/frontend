@@ -281,7 +281,7 @@ class FetchRequestBuilder {
 					result = result.items;
 			}
 		}
-		if (this.clientFilter && Array.isArray(result)) {
+		if (this.clientFilter) {
 			result = await this.clientFilter(result, {
 				url: this.url,
 				method: this.method,

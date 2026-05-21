@@ -1,7 +1,3 @@
-import { getDefaultStore } from "jotai";
-import { orgAtom } from "../utils/dataAtoms";
-import { AvailableCase } from "../models/AvailableCase";
-
 type RequestContext = {
 	url: string;
 	method: string;
@@ -11,12 +7,5 @@ type RequestContext = {
 	body: string | null;
 };
 
-export const employeeCasesFilter = (
-	cases: AvailableCase[],
-	ctx: RequestContext,
-) => cases;
-
-export const companyCasesFilter = (
-	cases: AvailableCase[],
-	ctx: RequestContext,
-) => cases;
+export const employeeCasesFilter = (data: unknown, ctx: RequestContext) => data;
+export const companyCasesFilter = (data: unknown, ctx: RequestContext) => data;
